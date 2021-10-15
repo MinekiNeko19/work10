@@ -7,6 +7,7 @@ struct cat {
     int age;
     char breed[100];
     struct cat *next;
+    *next = NULL;
     };
 
 void print_cat(struct cat *c);
