@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "linked.h"
 
 // function to print out the values in the struct
@@ -17,9 +15,12 @@ struct cat * add_cat(char n[20], int a, char b[20]) {
     return c;
 }
 
-// void print_list(struct cat *) {
-
-// }
+void print_list(struct cat *c) {
+    print_cat(c);
+    if (c->next != NULL) {
+        print_list(c->next);
+    }
+}
 
 // struct cat * insert_front(struct cat *, int) {
 
@@ -38,6 +39,7 @@ int main() {
 
     struct cat * Mark = add_cat("Mark", 3, "Siamese");
     print_cat(Mark);
+    print_list(Mark);
     free(Mark);
 
     return 0;
