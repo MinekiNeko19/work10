@@ -28,9 +28,19 @@ struct cat * insert_front(struct cat *c, char n[100], int a, char b[100]) {
     return front;
 }
 
-// struct cat * free_list(struct cat *) {
+struct cat * free_list(struct cat *c) {
+    if (c->next > 0) {
+        free_list(c->next);
+    }
+    char temp[100];
+    strcpy(temp, c->name);
+    // free(c->name);
+    // free(c->age);
+    // free(c->breed);
+    free(c);
+    printf("removed %s\n", temp);
+}
 
-// }
 
 int main() {
     // struct cat * Joline;
@@ -44,10 +54,18 @@ int main() {
     print_list(Mark);
 
     struct cat * Nyan = insert_front(Mark, "Nyan Cat", 10, "Pop Tart");
-    print_list(Nyan);
+    // print_list(Nyan);
 
+    struct cat * GB = insert_front(Nyan, "Gwangbok", 3, "Norwegian Forest Cat");
+    // print_list(Nyan);
 
-    free(Mark);
+    struct cat * Tan = insert_front(GB, "Tan", 1, "Ginger");
+    print_list(Tan);
+
+    // free(Mark);
+    free_list(Tan);    
+
+    print_list(Tan);
 
     return 0;
 }
