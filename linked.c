@@ -17,9 +17,13 @@ struct cat * add_cat(char n[100], int a, char b[100]) {
 }
 
 void print_list(struct cat *c) {
-    print_cat(c);
-    if (c->next != NULL) {
-        print_list(c->next);
+    if (c != NULL) {
+        print_cat(c);
+        if (c->next != NULL) {
+            print_list(c->next);
+        }
+    } else {
+        printf("This linked list was cleared!");
     }
 }
 
@@ -33,11 +37,12 @@ struct cat * free_list(struct cat *c) {
     if (c->next != NULL) {
         c->next = free_list(c->next);
     }
-    char temp[100];
+    // char temp[100];
     // strcpy(temp, c->name);
     free(c);
     // printf("removed %s\n", temp);
     c = NULL;
+    printf("%p",c);
     return c;
 }
 
