@@ -37,13 +37,19 @@ struct cat * free_list(struct cat *c) {
     if (c->next != NULL) {
         c->next = free_list(c->next);
     }
-    // char temp[100];
-    // strcpy(temp, c->name);
     free(c);
-    // printf("removed %s\n", temp);
     c = NULL;
-    printf("%p",c);
+    // printf("%p",c);
     return c;
+
+    // struct cat * temp;
+    // while (c != NULL) {
+    //     temp = c;
+    //     c = c->next;
+    //     free(temp);
+    //     temp = NULL;
+    // }
+    // return c;
 }
 
 
@@ -54,8 +60,9 @@ int main() {
     // strcpy(Joline->breed, "Calico");
     // print_cat(Joline);
 
+    printf("This is Mark:\n");
     struct cat * Mark = add_cat("Mark", 3, "Siamese");
-    // print_cat(Mark);
+    print_cat(Mark);
     // print_list(Mark);
 
     struct cat * Nyan = insert_front(Mark, "Nyan Cat", 10, "Pop Tart");
@@ -65,9 +72,11 @@ int main() {
     // print_list(Nyan);
 
     struct cat * Tan = insert_front(GB, "Tan", 1, "Ginger");
-    // print_list(Tan);
+    printf("\nThis is Mark and his friends!\n");
+    print_list(Tan);
 
     // free(Mark);
+    printf("\nYou're not included....\n");
     free_list(Tan);
     print_list(Tan);
 
