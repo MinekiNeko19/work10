@@ -12,6 +12,7 @@ struct cat * add_cat(char n[100], int a, char b[100]) {
     strncpy(c->name, n, 100);
     strncpy(c->breed, b, 100);
     c -> age = a;
+    c->next = NULL;
     return c;
 }
 
@@ -29,16 +30,15 @@ struct cat * insert_front(struct cat *c, char n[100], int a, char b[100]) {
 }
 
 struct cat * free_list(struct cat *c) {
-    if (c->next > 0) {
-        free_list(c->next);
+    if (c->next != NULL) {
+        c->next = free_list(c->next);
     }
     char temp[100];
-    strcpy(temp, c->name);
-    // free(c->name);
-    // free(c->age);
-    // free(c->breed);
+    // strcpy(temp, c->name);
     free(c);
-    printf("removed %s\n", temp);
+    // printf("removed %s\n", temp);
+    c = NULL;
+    return c;
 }
 
 
@@ -50,8 +50,8 @@ int main() {
     // print_cat(Joline);
 
     struct cat * Mark = add_cat("Mark", 3, "Siamese");
-    print_cat(Mark);
-    print_list(Mark);
+    // print_cat(Mark);
+    // print_list(Mark);
 
     struct cat * Nyan = insert_front(Mark, "Nyan Cat", 10, "Pop Tart");
     // print_list(Nyan);
@@ -60,11 +60,10 @@ int main() {
     // print_list(Nyan);
 
     struct cat * Tan = insert_front(GB, "Tan", 1, "Ginger");
-    print_list(Tan);
+    // print_list(Tan);
 
     // free(Mark);
-    free_list(Tan);    
-
+    free_list(Tan);
     print_list(Tan);
 
     return 0;
