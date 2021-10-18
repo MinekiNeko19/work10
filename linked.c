@@ -41,20 +41,23 @@ struct cat * free_list(struct cat *c) {
     c = NULL;
     // printf("%p",c);
     return c;
-
-    // struct cat * temp;
-    // while (c != NULL) {
-    //     temp = c;
-    //     c = c->next;
-    //     free(temp);
-    //     temp = NULL;
-    // }
-    // return c;
 }
 
-// struct cat * remove_node(struct cat * front, int data) {
-
-// }
+struct cat * remove_node(struct cat * front, int a) {
+    struct cat * temp = front;
+    struct cat * past = front;
+    while (temp) {
+        if (temp -> age == a) {
+            past -> next = temp -> next;
+            free(temp);
+            temp = NULL;
+        } else {
+            past = temp;
+            temp = temp->next;
+        }
+    }
+    return front;
+}
 
 int main() {
     // struct cat * Joline;
@@ -79,8 +82,13 @@ int main() {
     print_list(Mark);
 
     // free(Mark);
-    printf("\nYou're not included....\n");
-    Mark = free_list(Mark);
+    // printf("\nYou're not included....\n");
+    // Mark = free_list(Mark);
+    // print_list(Mark);
+
+    // remove Nyan Cat
+    Mark = remove_node(Mark, 10);
+    printf("\nWait... Nyan Cat isn't a real cat!\n");
     print_list(Mark);
 
     return 0;
