@@ -46,16 +46,19 @@ struct cat * free_list(struct cat *c) {
 struct cat * remove_node(struct cat * front, int a) {
     struct cat * temp = front;
     struct cat * past = front;
+    // char test[50] = "Not found in the list!\n";
     while (temp) {
         if (temp -> age == a) {
             past -> next = temp -> next;
             free(temp);
             temp = NULL;
+            // strcpy(test, "Removed from the list\n");
         } else {
             past = temp;
             temp = temp->next;
         }
-    }
+    } 
+    // printf(test);
     return front;
 }
 
@@ -87,8 +90,12 @@ int main() {
     // print_list(Mark);
 
     // remove Nyan Cat
-    Mark = remove_node(Mark, 10);
     printf("\nWait... Nyan Cat isn't a real cat!\n");
+    Mark = remove_node(Mark, 10);
+    print_list(Mark);
+
+    printf("\nLet's make sure Nyan Cat isn't on the list.... Sorry Nyan Cat :(\n");
+    Mark = remove_node(Mark, 10);
     print_list(Mark);
 
     return 0;
