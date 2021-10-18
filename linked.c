@@ -23,7 +23,7 @@ void print_list(struct cat *c) {
             print_list(c->next);
         }
     } else {
-        printf("This linked list was cleared!");
+        printf("This linked list was cleared!\n");
     }
 }
 
@@ -52,6 +52,9 @@ struct cat * free_list(struct cat *c) {
     // return c;
 }
 
+// struct cat * remove_node(struct cat * front, int data) {
+
+// }
 
 int main() {
     // struct cat * Joline;
@@ -65,20 +68,20 @@ int main() {
     print_cat(Mark);
     // print_list(Mark);
 
-    struct cat * Nyan = insert_front(Mark, "Nyan Cat", 10, "Pop Tart");
+    Mark = insert_front(Mark, "Nyan Cat", 10, "Pop Tart");
     // print_list(Nyan);
 
-    struct cat * GB = insert_front(Nyan, "Gwangbok", 3, "Norwegian Forest Cat");
+    Mark = insert_front(Mark, "Gwangbok", 3, "Norwegian Forest Cat");
     // print_list(Nyan);
 
-    struct cat * Tan = insert_front(GB, "Tan", 1, "Ginger");
+    Mark = insert_front(Mark, "Tan", 1, "Ginger");
     printf("\nThis is Mark and his friends!\n");
-    print_list(Tan);
+    print_list(Mark);
 
     // free(Mark);
     printf("\nYou're not included....\n");
-    free_list(Tan);
-    print_list(Tan);
+    Mark = free_list(Mark);
+    print_list(Mark);
 
     return 0;
 }
